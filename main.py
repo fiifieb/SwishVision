@@ -6,8 +6,7 @@ from cvzone.ColorModule import ColorFinder
 import numpy as np
 
 # Initialization
-
-cam = cv2.VideoCapture('Test ball/Videos/vid (3).mp4')
+cam = cv2.VideoCapture('Test ball/Videos/vid (4).mp4')
 x_pos_list = []
 y_pos_list = []
 x_path = [i for i in range(1300)]
@@ -31,7 +30,8 @@ while True:
     if contours:
         x_pos_list.append(contours[0]['center'][0])   
         y_pos_list.append(contours[0]['center'][1])  
-    # Calculations y = Ax^2 + Bx + C
+
+    #Plot values
     if x_pos_list:
         for i, (x,y) in enumerate(zip(x_pos_list,y_pos_list)):
             cv2.circle(imgContours,(x,y),5,(0,255,0),cv2.FILLED)
@@ -45,13 +45,17 @@ while True:
             y = int((a*x*x) + (b*x) + c)
             cv2.circle(imgContours,(x,y),1,(0,0,255),cv2.FILLED)
 
-
-
-
-
-
-
-
+        # Predict if ball will go in
+        #Quadratic formula to find x values at basket
+        if len(x_pos_list)<10:
+            c = c-590  #y=590 at basket
+            x = (-b - math.sqrt((b**2)-(4*a*c)))/(2*a)
+            prediction = 330<x<430  # x values at basket
+        else:
+            if prediction:
+                cvzone.putTextRect(imgContours,"basket!",(50,100))
+            else:
+                cvzone.putTextRect(imgContours,"no basket!",(50,100),colorR=(0,0,255))
 
 
     # Display 
