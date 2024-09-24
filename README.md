@@ -15,7 +15,6 @@
 - **CVZone**: Used for simplifying the process of computer vision and tracking tasks.
 - **OpenCV**: Base for image processing and frame capture.
 - **NumPy**: For data manipulation and mathematical operations.
-- **Matplotlib**: To visualize the predicted path of the ball.
 
 ## How it Works
 1. **Ball Detection**: CVZone and OpenCV are used to detect and track the basketball within the video feed.
@@ -30,7 +29,6 @@
 - OpenCV
 - CVZone
 - NumPy
-- Matplotlib
 
 ### Installation
 1. Clone the repository:
